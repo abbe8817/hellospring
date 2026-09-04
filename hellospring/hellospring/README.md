@@ -65,6 +65,28 @@ server.port=8080
 management.endpoints.web.exposure.include=health,info
 ```
 
+## Running with Docker
+
+The Dockerfile expects a pre-built jar — it does not compile the application itself. Build it first:
+
+```bash
+./mvnw package -DskipTests
+```
+
+Then build the image:
+
+```bash
+docker build -t hellospring .
+```
+
+Run the container:
+
+```bash
+docker run -p 8080:8080 hellospring
+```
+
+The app is then reachable at `http://localhost:8080`, same as running it locally.
+
 ## Roadmap
 
 - [ ] Add a persistence layer (e.g. Spring Data JPA)
