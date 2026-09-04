@@ -67,13 +67,9 @@ management.endpoints.web.exposure.include=health,info
 
 ## Running with Docker
 
-The Dockerfile expects a pre-built jar — it does not compile the application itself. Build it first:
+The Dockerfile is multi-stage: it builds the jar itself (JDK build stage), then packages it into a slim JRE runtime image. No local build step is needed first.
 
-```bash
-./mvnw package -DskipTests
-```
-
-Then build the image:
+Build the image:
 
 ```bash
 docker build -t hellospring .
